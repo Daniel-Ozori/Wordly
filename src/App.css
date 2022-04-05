@@ -1,0 +1,15 @@
+.grid-main {
+  grid-template-columns: repeat(8,minmax(20px,100px));
+}
+.bg-image{
+  background-image: url('https://images.pexels.com/photos/5652116/pexels-photo-5652116.jpeg?auto=compress&cs=tinysrgb&w=600');
+  filter: grayscale(0.3) blur(2px);
+  -webkit-mask: linear-gradient(rgb(255, 255, 255), transparent);
+}
+.text{
+  text-shadow:
+   -0.01em -0.01em 0 rgb(255, 255, 255),  
+   0.01em -0.01em  0 rgb(255, 255, 255),
+    -0.01em 0.01em   0 rgb(255, 255, 255),
+    0.01em  0.01em  0 rgb(255, 255, 255);
+}
