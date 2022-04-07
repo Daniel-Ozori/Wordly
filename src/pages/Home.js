@@ -11,6 +11,7 @@ export default function Home(){
     const [maxLength, setMaxLength] = useState(null);
     const [minLength, setMinLength] = useState(null);
     const [amount, setAmount] = useState(null);
+    const wildcards = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
     //fetch the dictionary on page load
     if(dictionary === null){  
         fetch(Dictionary)
@@ -22,6 +23,7 @@ export default function Home(){
 
     function getAllVariants(text){
         var combos =  branchesToWords(tree(text.split('')))
+        console.log(combos);
         var uniqueCombos = [...new Set(combos)]
         return uniqueCombos;
     }
@@ -40,15 +42,29 @@ export default function Home(){
         if (leafs.length == 1) return leafs;
         for (var k in leafs) {
           var leaf = leafs[k];
-          tree(leafs.join('').replace(leaf, '').split('')).concat("").map(function(subtree) {
-            branches.push([leaf].concat(subtree));
-          });
+          if(leaf == '?'){
+              for(var w in wildcards){
+                var wildcard = wildcards[w];
+
+                var temp = leafs.join('').replace(leaf,wildcard).split('');
+                tree(temp.join('').replace(wildcard, '').split('')).concat("").map(function(subtree) {
+                    branches.push([wildcard].concat(subtree));
+                });
+              }
+          }else{
+        
+           tree(leafs.join('').replace(leaf, '').split('')).concat("").map(function(subtree) {
+                branches.push([leaf].concat(subtree));
+            });
+          }
         }
         return branches;
       };
 
     //check if given word is contained in the dictionary
     function checkDictionary(word){
+        console.log(word.replace('?',''));
+    
         const isValidWord = (dictionary.indexOf(word) > -1);
         const index = dictionary.indexOf(word);
         return (isValidWord ? dictionary[index] : null);
@@ -122,7 +138,15 @@ export default function Home(){
             
         return groups;
     }   
-
+    function controlWC(value){
+        var count = (value.match(/\?/g) || []).length;
+        var result = value;
+        if(count > 2){
+           result =  result.slice(0, value.lastIndexOf('?')) +
+           result.slice(value.lastIndexOf('?') + 1);
+        }
+        return result;
+    }
     return(
         <div >
         <div className='grid overflow-y-hidden   justify-center grid-main relative w-full px-5 md:px-10'>
@@ -146,8 +170,8 @@ export default function Home(){
                         <input
                             className='border-2 w-full my-10 h-14 rounded-3xl bg-white uppercase px-5 border-red'
                             maxLength={7}
-                            placeholder='TILES'
-                            onChange={(event) => setText(event.target.value)}
+                            placeholder='Use ? for wildcards'
+                            onChange={(event) => setText(controlWC(event.target.value))}
                             value={text}
                             />
             
