@@ -162,8 +162,8 @@ export default function Home(){
                         </div>
 
                     </div>
-                    <div className='text-[40px] font-bold grid gap-2 my-5'>
-                        FIND <div>SCRABBLE WORDs</div>
+                    <div className='text-[40px] font-bold text-[#ffeab8] grid gap-2 my-5'>
+                        FIND <div className='text-black'>SCRABBLE WORDs</div>
                     </div>
                     <div className='flex w-full justify-center items-center'>
                         
@@ -178,9 +178,9 @@ export default function Home(){
                         <img 
                             onClick={() => getWords()}
                             src={require('../assets/search_icon.gif')} 
-                            className='h-10 cursor-pointer border w-10 bg-white hover:shadow-lg mx-5 p-2 rounded-full'/>
+                            className='h-10 border-black cursor-pointer border w-10 bg-white hover:shadow-lg mx-5 p-2 rounded-full'/>
                     </div>
-                    <div className='bg-white flex-wrap border  flex rounded-lg p-2 my-5 w-fit'>
+                    <div className='bg-white border-black flex-wrap border  flex rounded-lg p-2 my-5 w-fit'>
                         <img 
                             src={require('../assets/filter.png')} 
                             className='h-4 hidden md:block cursor-pointer w-4 '/>
