@@ -1,4 +1,4 @@
-# Wordly![Screenshot 2022-04-07 224928](https://user-images.githubusercontent.com/87254931/162325744-eae28140-054c-4c35-bce9-87f46d23a788.png)
+# Wordly![Screenshot 2022-04-23 200930](https://user-images.githubusercontent.com/87254931/164943035-d226b942-9a13-4678-8639-064ab80a7ccc.png)
 
 
 Wordly is a scrabble word finder written in React JS<br/> 
